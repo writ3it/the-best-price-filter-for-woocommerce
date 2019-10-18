@@ -31,29 +31,22 @@ function tbwpf_create_table()
     INDEX( `post_id`, `property`, `value`)
 )  $charset_collate";
 
-
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
     dbDelta($sql);
-
 }
 
 function tbwpf_filldata()
 {
     global $wpdb;
     $tableName = tbwpf_tableName();
-    $wpdb->query(
-            "DELETE FROM $tableName
-		 WHERE 1
-		"
-    );
-    $wpdb->query(
-        "   INSERT INTO  $tableName (`post_id`,`property`,`value`)
+
+    $wpdb->query("DELETE FROM $tableName WHERE 1");
+
+    $wpdb->query("INSERT INTO  $tableName (`post_id`,`property`,`value`)
             SELECT post_id, meta_key, CAST(meta_value AS DECIMAL(10,6)) 
             FROM {$wpdb->prefix}postmeta pm
-            WHERE pm.meta_key = '_price'
-		"
-    );
+            WHERE pm.meta_key = '_price'");
 }
 
 
