@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       The Best Woocommerce Price Filter
+ * Plugin Name:       Woocommerce The Best Price Filter
  * Plugin URI:        https://github.com/writ3it/wordpress-the-best-woo-price-filter
  * Description:       Woocommerce implements price filter thats cannot search product variation individually! This plugin is a solution.
  * Version:           1.0
@@ -15,4 +15,9 @@
 
 define('TBWPF', __FILE__);
 
+//plugin (de)activation hook
 require_once __DIR__ . '/install.php';
+
+//price updates
+require_once __DIR__.'/PriceUpdater.php';
+$updater = new PriceUpdater();
