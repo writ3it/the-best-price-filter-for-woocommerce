@@ -8,48 +8,48 @@
 
 class PriceUpdater
 {
+    /**
+     * @var OptFloatProperties
+     */
+    private $properties;
+
     public function __construct()
     {
+        global $wpdb;
+        $this->properties = new OptFloatProperties($wpdb);
         add_action('woocommerce_after_product_object_save', array($this, 'updateProductPrices'), 999, 2);
     }
 
+    /**
+     * @param WC_Product $product
+     * @param $dataStore
+     */
     public function updateProductPrices($product, $dataStore)
     {
-        global $wpdb;
-        //TODO: refactoring
-        //TODO: extract opt api
+        $prices = $this->getPrices($product);
+
+        $productId = $product->get_id();
+
+        $this->properties->removeUselessValues($productId, '_price', $prices);
+
+        $currentPrices = $this->properties->getValues($productId, '_price');
+
+        $toAdd = array_diff($prices, $currentPrices);
+        if (empty($toAdd)) {
+            return;
+        }
+
+        $this->properties->insert($productId, '_price', $toAdd);
+    }
+
+    private function getPrices(WC_Product $product)
+    {
         $prices = ['price' => []];
         if ($product instanceof WC_Product_Variable) {
             $prices = $product->get_variation_prices(false);
         } else {
             $prices['price'][] = $product->get_price(false);
         }
-        $productId = $product->get_id();
-
-        $tableName = tbwpf_tableName();
-        $optPrices = array_unique(array_map('floatval',$prices['price']));
-        $optPricesString = implode(',', $optPrices);
-
-        $wpdb->query($wpdb->prepare(
-            "DELETE FROM {$tableName} WHERE post_id=%d AND property='_price' AND `value` NOT IN ({$optPricesString})",
-            $productId
-        )
-        );
-
-        $values = $wpdb->get_results($wpdb->prepare("SELECT `value` FROM {$tableName} WHERE post_id=%d AND property='_price'",$productId));
-        $currentPrices = array_map(function ($price){
-            return (float)$price->value;
-        },$values);
-
-        $toAdd = array_diff($optPrices, $currentPrices);
-        if (empty($toAdd)) {
-            return ;
-        }
-        $sql = "INSERT INTO {$tableName} (`post_id`,`property`,`value`) VALUES ";
-        foreach($toAdd as $price){
-            $sql .= " ({$productId}, '_price', {$price}),";
-        }
-        $sql = trim($sql, ',');
-        $wpdb->query($sql);
+        return array_unique(array_map('floatval', $prices['price']));
     }
 }
