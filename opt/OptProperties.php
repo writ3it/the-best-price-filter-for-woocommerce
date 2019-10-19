@@ -36,6 +36,7 @@ class OptProperties
         $charset_collate = $this->db->get_charset_collate();
         $tableName = $this->getTableName();
         $type = $this->getSqlType();
+        $postTableName = $this->db->prefix . 'posts';
 
         $sql = "CREATE TABLE IF NOT EXISTS `$tableName` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -94,11 +95,11 @@ class OptProperties
         $this->removeAll();
         $tableName = $this->getTableName();
         $castType = $this->getSqlCastType();
-        foreach ($types as $tyoe) {
+        foreach ($types as $type) {
             $this->db->query("INSERT INTO  $tableName (`post_id`,`property`,`value`)
             SELECT post_id, meta_key, CAST(meta_value AS {$castType}) 
-            FROM {$wpdb->prefix}postmeta pm
-            WHERE pm.meta_key = '{$type}");
+            FROM {$this->db->prefix}postmeta pm
+            WHERE pm.meta_key = '{$type}'");
         }
     }
 
