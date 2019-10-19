@@ -22,3 +22,21 @@ function tbwpf_price_filter_post_clauses($args, $wp_query)
         $args['where']);
     return $args;
 }
+
+add_action('wc_update_product_lookup_tables_column', 'tbwpf_regenerate');
+
+function tbwpf_regenerate($column)
+{
+    global $wpdb;
+
+    if ($column != 'min_max_price') {
+        return;
+    }
+    $floatTable = new OptFloatProperties($wpdb);
+
+    if (!$floatTable->isCreated()) {
+        return;
+    }
+
+    $floatTable->clearAndRegenerate(['_price']);
+}
