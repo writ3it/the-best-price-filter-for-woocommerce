@@ -170,7 +170,7 @@ class OptProperties
         $sql = "INSERT INTO {$tableName} (`post_id`,`property`,`value`) VALUES ";
         foreach ($valuesToAdd as $value) {
             $escapedValue = $this->db->_real_escape($value);
-            $sql .= " ({$postId}, $property, '{$escapedValue}'),";
+            $sql .= " ({$postId}, '$property', '{$escapedValue}'),";
         }
         $sql = trim($sql, ',');
         $this->db->query($sql);

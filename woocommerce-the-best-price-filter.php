@@ -21,10 +21,6 @@ require_once __DIR__ . '/opt/load.php';
 //plugin (de)activation hook
 require_once __DIR__ . '/install.php';
 
-if (!class_exists('WC_Product_Query')) {
-    return;
-}
-
 //price updates
 require_once __DIR__.'/PriceUpdater.php';
 $updater = new PriceUpdater();
