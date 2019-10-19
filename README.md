@@ -1,4 +1,4 @@
-# Woocommerce The Best Price Filter
+# The Best Price Filter for Woocommerce
 
 Woocommerce implements price filter that cannot search product variation individually! 
 This plugin implements better solution to search products through default price filter.
