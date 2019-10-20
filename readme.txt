@@ -4,6 +4,7 @@ Tags: e-commerce, ecommerce, woocommerce, price, filter, widget
 Requires at least: 5.0
 Tested up to: 5.2
 Requires PHP: 7.0
+Stable tag: trunk
 License: GPLv3 or later
 License URI: https://github.com/writ3it/the-best-price-filter-for-woocommerce/blob/master/LICENSE
 
