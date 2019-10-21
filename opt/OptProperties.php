@@ -92,7 +92,7 @@ class tbwpf_OptProperties
      */
     public function clearAndRegenerate($types)
     {
-        $this->removeAll();
+        $this->removeAll($types);
         $tableName = $this->getTableName();
         $castType = $this->getSqlCastType();
         foreach ($types as $type) {
@@ -105,11 +105,15 @@ class tbwpf_OptProperties
 
     /**
      * Removes all properties
+     * @param string[] $properties
      */
-    public function removeAll()
+    public function removeAll($properties)
     {
         $tableName = $this->getTableName();
-        $this->db->query("DELETE FROM $tableName WHERE 1");
+        foreach ($properties as $property) {
+            $this->db->query(
+                $this->db->prepare("DELETE FROM $tableName WHERE property='%s'", $property));
+        }
     }
 
     /**
