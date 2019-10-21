@@ -6,9 +6,9 @@
  * Time: 21:48
  */
 
-class OptProperties
+class tbwpf_OptProperties
 {
-    protected $type = OptPropertyTypes::UNDEFINED;
+    protected $type = tbwpf_OptPropertyTypes::UNDEFINED;
     protected $sqlType = 'undefined';
     protected $sqlCast = 'undefined';
     protected $cast = 'floatval';

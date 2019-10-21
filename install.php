@@ -10,7 +10,7 @@ function tbwpf_activation()
 {
     global $wpdb;
 
-    $floatTable = new OptFloatProperties($wpdb);
+    $floatTable = new tbwpf_OptFloatProperties($wpdb);
 
     if (!$floatTable->isCreated()) {
         $floatTable->create();

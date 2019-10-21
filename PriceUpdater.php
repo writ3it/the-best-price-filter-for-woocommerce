@@ -6,17 +6,17 @@
  * Time: 19:07
  */
 
-class PriceUpdater
+class tbwpf_PriceUpdater
 {
     /**
-     * @var OptFloatProperties
+     * @var tbwpf_tbwpf_OptFloatProperties
      */
     private $properties;
 
     public function __construct()
     {
         global $wpdb;
-        $this->properties = new OptFloatProperties($wpdb);
+        $this->properties = new tbwpf_OptFloatProperties($wpdb);
         add_action('woocommerce_after_product_object_save', array($this, 'updateProductPrices'), 999, 2);
     }
 

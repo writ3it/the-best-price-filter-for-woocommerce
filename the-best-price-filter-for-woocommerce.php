@@ -23,7 +23,7 @@ require_once __DIR__ . '/install.php';
 
 //price updates
 require_once __DIR__.'/PriceUpdater.php';
-$updater = new PriceUpdater();
+$updater = new tbwpf_PriceUpdater();
 
 //fix
 require_once __DIR__.'/wc-query-fixer.php';

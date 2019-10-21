@@ -14,7 +14,7 @@ function tbwpf_price_filter_post_clauses($args, $wp_query)
     if (!$wp_query->is_main_query() || (!isset($_GET['max_price']) && !isset($_GET['min_price']))) {
         return $args;
     }
-    $tableName = OptProperties::tableNameFor($wpdb, 'float');
+    $tableName = tbwpf_OptProperties::tableNameFor($wpdb, 'float');
     $args['join'] .= "\n LEFT JOIN {$tableName} opt_price ON wp_posts.ID = opt_price.post_id ";
     $args['where'] = preg_replace(
         '/AND [a-z_\.]+(\s*>=\s*[0-9\.]+)\s+AND\s+[a-z_\.]+(\s*<=\s[0-9\.]+)/mi',
@@ -32,7 +32,7 @@ function tbwpf_regenerate($column)
     if ($column != 'min_max_price') {
         return;
     }
-    $floatTable = new OptFloatProperties($wpdb);
+    $floatTable = new tbwpf_OptFloatProperties($wpdb);
 
     if (!$floatTable->isCreated()) {
         return;

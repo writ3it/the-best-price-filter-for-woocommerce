@@ -6,9 +6,9 @@
  * Time: 21:48
  */
 
-class OptFloatProperties extends OptProperties
+class tbwpf_OptFloatProperties extends tbwpf_OptProperties
 {
-    protected $type = OptPropertyTypes::FLOAT;
+    protected $type = tbwpf_OptPropertyTypes::FLOAT;
     protected $sqlCast = 'DECIMAL(10,6)';
     protected $sqlType = 'float NOT NULL';
 }

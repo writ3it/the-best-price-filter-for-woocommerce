@@ -6,7 +6,7 @@
  * Time: 22:16
  */
 
-abstract class OptPropertyTypes
+abstract class tbwpf_OptPropertyTypes
 {
     const FLOAT = 'float';
     const UNDEFINED = 'undefined';
