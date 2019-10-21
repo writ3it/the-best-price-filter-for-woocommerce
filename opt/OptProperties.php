@@ -99,6 +99,7 @@ class tbwpf_OptProperties
             $this->db->query("INSERT INTO  $tableName (`post_id`,`property`,`value`)
             SELECT post_id, meta_key, CAST(meta_value AS {$castType}) 
             FROM {$this->db->prefix}postmeta pm
+            JOIN {$this->db->prefix}posts p ON pm.post_id = p.ID
             WHERE pm.meta_key = '{$type}'");
         }
     }
