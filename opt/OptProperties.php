@@ -45,7 +45,6 @@ class tbwpf_OptProperties
                     `value` {$type},
                     PRIMARY KEY(`id`),
                     INDEX(`property`),
-                    FOREIGN KEY(`post_id`) REFERENCES $postTableName(`ID`),
                     INDEX( `post_id`, `property`, `value`)
                 )  $charset_collate";
 
@@ -133,6 +132,9 @@ class tbwpf_OptProperties
      */
     public function removeUselessValues($postId, $property, $currentValues)
     {
+        if (empty($currentValues)) {
+            return;
+        }
         $optPricesString = implode(',', $currentValues);
         $tableName = $this->getTableName();
         $this->db->query($this->db->prepare(
