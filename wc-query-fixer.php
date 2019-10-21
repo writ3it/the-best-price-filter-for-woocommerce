@@ -15,7 +15,7 @@ function tbwpf_price_filter_post_clauses($args, $wp_query)
         return $args;
     }
     $tableName = tbwpf_OptProperties::tableNameFor($wpdb, 'float');
-    $args['join'] .= "\n LEFT JOIN {$tableName} opt_price ON wp_posts.ID = opt_price.post_id ";
+    $args['join'] .= "\n LEFT JOIN {$tableName} opt_price ON {$wpdb->prefix}posts.ID = opt_price.post_id ";
     $args['where'] = preg_replace(
         '/AND [a-z_\.]+(\s*>=\s*[0-9\.]+)\s+AND\s+[a-z_\.]+(\s*<=\s[0-9\.]+)/mi',
         'AND opt_price.property="_price" AND opt_price.value $1 AND opt_price.value $2',
