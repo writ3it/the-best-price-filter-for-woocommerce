@@ -11,6 +11,12 @@ License URI: https://github.com/writ3it/the-best-price-filter-for-woocommerce/bl
 Woocommerce implements price filter that cannot search product variation individually!
 This plugin implements better solution to search products through default price filter.
 
+**Instalation**
+1. Install and activate Woocommerce.
+2. Configure default Woocommerce Price filter widget.
+3. Install and activate The Best Price Filter for Woocommerce.
+4. That\'s all!
+
 == Installation ==
 1. Install and activate Woocommerce.
 2. Configure default Woocommerce Price filter widget.
@@ -18,9 +24,9 @@ This plugin implements better solution to search products through default price 
 4. That\'s all!
 
 == Screenshots ==
-1. https://github.com/writ3it/the-best-price-filter-for-woocommerce/raw/master/docs/banner.png
-2. https://github.com/writ3it/the-best-price-filter-for-woocommerce/raw/master/docs/image.png
+1. Main application functionality
 
 == Changelog ==
+- 2019-10-24 - 1.0.0 - plugin published
 - 2019-10-20 - new readme
 - 2019-10-19 - first release
