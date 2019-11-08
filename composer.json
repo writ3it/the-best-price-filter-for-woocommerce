@@ -1,0 +1,15 @@
+{
+    "name": "writ3it/the-best-price-filter-for-woocommerce",
+    "description": "Woocommerce implements price filter thats cannot search product variation individually! This plugin is a solution.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "writ3it",
+            "email": "42292507+writ3it@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6"
+    }
+}
