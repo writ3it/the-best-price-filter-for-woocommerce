@@ -11,4 +11,6 @@ class tbwpf_OptFloatProperties extends tbwpf_OptProperties
     protected $type = tbwpf_OptPropertyTypes::FLOAT;
     protected $sqlCast = 'DECIMAL(10,6)';
     protected $sqlType = 'float NOT NULL';
+
+
 }

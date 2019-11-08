@@ -15,7 +15,7 @@ class tbwpf_OptProperties
 
 
     /**
-     * @var wpdb
+     * @var wpdb|WpdbOptInterface
      */
     private $db;
 
@@ -29,14 +29,13 @@ class tbwpf_OptProperties
     }
 
     /**
-     * Creates table
+     * @return string
      */
-    public function create()
+    public function getCreationSQL()
     {
         $charset_collate = $this->db->get_charset_collate();
         $tableName = $this->getTableName();
         $type = $this->getSqlType();
-        $postTableName = $this->db->prefix . 'posts';
 
         $sql = "CREATE TABLE IF NOT EXISTS `$tableName` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -47,6 +46,15 @@ class tbwpf_OptProperties
                     INDEX(`property`),
                     INDEX( `post_id`, `property`, `value`)
                 )  $charset_collate";
+        return $sql;
+    }
+
+    /**
+     * Creates table
+     */
+    public function create()
+    {
+        $sql = $this->getCreationSQL();
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
