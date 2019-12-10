@@ -147,8 +147,8 @@ class tbwpf_OptProperties
         $tableName = $this->getTableName();
         $this->db->query($this->db->prepare(
             "DELETE FROM {$tableName} WHERE post_id=%d AND property='%s' AND `value` NOT IN ({$optPricesString})",
-            $property,
-            $postId
+            $postId,
+            $property
         )
         );
     }
