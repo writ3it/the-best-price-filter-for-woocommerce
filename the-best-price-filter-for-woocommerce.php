@@ -4,7 +4,7 @@
  * Plugin Name:       The Best Price Filter for Woocommerce
  * Plugin URI:        https://github.com/writ3it/the-best-price-filter-for-woocommerce
  * Description:       Woocommerce implements price filter thats cannot search product variation individually! This plugin is a solution.
- * Version:           1.0
+ * Version:           1.0.2
  * Requires at least: 5.2
  * Requires PHP:      7.0
  * Author:            writ3it
