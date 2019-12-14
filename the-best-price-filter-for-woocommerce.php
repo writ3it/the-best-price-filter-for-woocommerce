@@ -14,6 +14,13 @@
  */
 
 define('TBWPF', __FILE__);
+define('__TBWPF_VERSION', 2);
+
+/** @var wpdb $wpdb */
+
+//migration
+$migration = require_once __DIR__ . '/Migrations.php';
+$migration->verify();
 
 //opt
 require_once __DIR__ . '/opt/load.php';
@@ -22,8 +29,8 @@ require_once __DIR__ . '/opt/load.php';
 require_once __DIR__ . '/install.php';
 
 //price updates
-require_once __DIR__.'/PriceUpdater.php';
+require_once __DIR__ . '/PriceUpdater.php';
 $updater = new tbwpf_PriceUpdater();
 
 //fix
-require_once __DIR__.'/wc-query-fixer.php';
+require_once __DIR__ . '/wc-query-fixer.php';
