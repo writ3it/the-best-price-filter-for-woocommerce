@@ -19,6 +19,10 @@ class tbwpf_Migrations
      * @var wpdb
      */
     private $db;
+    /**
+     * @var bool
+     */
+    private $runPostProcess = false;
 
     /**
      * tbwpf_Migrations constructor.
@@ -35,6 +39,7 @@ class tbwpf_Migrations
         if ($this->current_version >= __TBWPF_VERSION) {
             return;
         }
+        $this->runPostProcess = true;
         $this->runMigrations();
         update_option(self::OPTION_VERSION_NAME, __TBWPF_VERSION);
         $this->current_version = __TBWPF_VERSION;
@@ -62,6 +67,14 @@ class tbwpf_Migrations
         $migration = new $className();
         $migration->setDb($this->db);
         $migration->run();
+    }
+
+    public function postProcess()
+    {
+        if (!$this->runPostProcess) {
+            return;
+        }
+        do_action('wc_update_product_lookup_tables_column', 'min_max_price'); //regenerate table
     }
 }
 

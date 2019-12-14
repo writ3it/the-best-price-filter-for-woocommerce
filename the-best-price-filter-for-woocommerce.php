@@ -19,6 +19,7 @@ define('__TBWPF_VERSION', 2);
 /** @var wpdb $wpdb */
 
 //migration
+/** @var tbwpf_Migrations $migration */
 $migration = require_once __DIR__ . '/Migrations.php';
 $migration->verify();
 
@@ -34,3 +35,5 @@ $updater = new tbwpf_PriceUpdater();
 
 //fix
 require_once __DIR__ . '/wc-query-fixer.php';
+
+$migration->postProcess();
