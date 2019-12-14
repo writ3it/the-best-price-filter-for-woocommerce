@@ -32,7 +32,6 @@ function tbwpf_regenerate($column)
     if ($column != 'min_max_price') {
         return;
     }
-
     $floatTable = new tbwpf_OptFloatProperties($wpdb);
 
     if (!$floatTable->isCreated()) {
