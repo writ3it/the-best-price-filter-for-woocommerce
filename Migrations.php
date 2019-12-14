@@ -26,10 +26,10 @@ class tbwpf_Migrations
 
     /**
      * tbwpf_Migrations constructor.
-     * @param wpdb $wpdb
      */
-    public function __construct($wpdb)
+    public function __construct()
     {
+        global $wpdb;
         $this->db = $wpdb;
         $this->current_version = (int)get_option(self::OPTION_VERSION_NAME, 1);
     }
@@ -78,4 +78,4 @@ class tbwpf_Migrations
     }
 }
 
-return new tbwpf_Migrations($wpdb);
+return new tbwpf_Migrations();

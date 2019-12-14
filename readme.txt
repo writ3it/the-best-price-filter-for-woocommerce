@@ -27,6 +27,7 @@ This plugin implements better solution to search products through default price 
 1. Main application functionality
 
 == Changelog ==
+- 2019-12-14 - 1.0.2 - fixed wpdb injection to migrations
 - 2019-12-14 - 1.0.1 - fixed bug at removing useless prices properties, added DB migration to perform new type for price properties
 - 2019-10-24 - 1.0.0 - plugin published
 - 2019-10-20 - new readme
